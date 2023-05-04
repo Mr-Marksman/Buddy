@@ -1,0 +1,14 @@
+<div class="media border-top p-3">
+  <div class="media-body col-md-10 d-inline-block mx-2">
+    <p><%= comment.body %></p>
+    <p><small><%= l(comment.created_at, format: :short) %></small></p>
+  </div>
+  <% if current_user_can_edit?(comment) %>
+    <div class="d-flex">
+      <button type="button" class="btn btn-secondary fa fa-pencil mx-2" data-bs-toggle="modal" data-bs-target="#edit-comment-modal-<%= comment.id %>"></button>
+      <%= button_to '', post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger fa fa-trash mx-2",
+                    form: { data: { turbo_confirm: I18n.t("actions.confirmation") } } %>
+    </div>
+  <% end %>
+</div>
+<%= render partial: "comments/edit_modal", locals: { comment: comment, post: comment.post } %>

@@ -1,0 +1,13 @@
+<div class="modal fade" id="edit-comment-modal-<%= comment.id %>" tabindex="-1" aria-labelledby="editCommentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_for [post, comment], data: {turbo: false} do |form| %>
+        <div class="form-group my-3 text-center">
+          <%= form.label :body, I18n.t("form.comment.body") %>
+          <%= form.text_area :body, class: "form-control" %>
+        </div>
+        <%= form.submit I18n.t("form.comment.submit"), class: "btn btn-warning mt-2 mb-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
