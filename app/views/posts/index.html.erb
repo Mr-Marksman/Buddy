@@ -1,0 +1,17 @@
+<div class="row buffer-bottom">
+  <% if user_signed_in? %>
+    <div class="d-flex justify-content-end">
+      <% if params[:my_posts] == 'true' %>
+        <%= link_to 'Показать все посты', root_path, class: 'btn btn-primary' %>
+      <% else %>
+        <%= link_to 'Показать только мои посты', root_path(my_posts: true), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="col-md-10 mx-auto">
+    <% @posts.each_with_index do |post, index| %>
+      <%= render partial: "posts/post", locals: { post: post, counter: index + 1 } %>
+    <% end %>
+  </div>
+  <%= paginate @posts, remote: true %>
+</div>

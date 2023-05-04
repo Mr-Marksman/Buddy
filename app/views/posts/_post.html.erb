@@ -1,0 +1,54 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cardText = document.querySelector('.card-text-number-<%= counter %>');
+        var cardLink = document.querySelector('.card-link-number-<%= counter %>');
+        var originalText = cardText.innerText;
+        var maxLength = 150;
+
+        if (originalText.length > maxLength) {
+            var truncatedText = originalText.substring(0, maxLength) + '...';
+            cardText.innerHTML = truncatedText;
+        }
+
+        cardLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            cardText.innerHTML = originalText;
+            cardLink.style.display = 'none';
+        });
+    });
+</script>
+
+<div class="card-body border-bottom">
+  <h5 class="card-title text-center"><%= post.title %></h5>
+  <div class="card-text">
+    <%= image_tag post.image.url, class: 'picture_box my-3' if post.image.attached? %>
+    <p>
+    <div class="d-inline card-text-number-<%= counter %>"><%= simple_format post.description %></div>
+    <% if post.description.length > 150 %>
+      <a href="#" class="card-link-number-<%= counter %>">Показать полностью</a>
+    <% end %>
+    </p>
+  </div>
+  <div>
+    <small>
+      <% post.hashtags.each do |tag| %>
+        <%= link_to "##{tag.name}", params[:my_posts] == 'true' ? root_path(hashtag: tag.name, my_posts: true) : root_path(hashtag: tag.name), class: 'text-decoration-none' %>
+      <% end %>
+    </small>
+  </div>
+  <div class="d-flex">
+    <button class="btn btn-primary fa fa-comments mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#comments-section-<%= counter %>" aria-expanded="false" aria-controls="comments-section-<%= counter %>"></button>
+    <% if current_user_can_edit?(post) %>
+      <%= link_to '', edit_post_path(post), class: 'btn btn-secondary fa fa-pencil mx-2' %>
+      <%= button_to '', post, method: :delete, form: { data: { turbo_confirm: I18n.t("actions.confirmation") } }, class: 'btn btn-danger fa fa-trash mx-2' %>
+    <% end %>
+  </div>
+  <div class="collapse" id="comments-section-<%= counter %>">
+    <% new_comment = post.comments.build %>
+    <% if user_signed_in? %>
+      <%= render partial: "comments/form", locals: { comment: new_comment, post: post } %>
+    <% end %>
+    <%= render partial: "comments/comment", collection: post.comments.except(new_comment) %>
+  </div>
+</div>
+

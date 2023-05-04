@@ -1,0 +1,50 @@
+ru:
+  controllers:
+    comments:
+      destroyed: "Комментарий удален"
+      error: "Ошибка при удалении комментария"
+  actions:
+    confirmation: "Подтверждение"
+  form:
+    comment:
+      body: "Текст комментария"
+      submit: "Отправить комментарий"
+    picture:
+      photo: "Фото"
+    post:
+      title: "Заголовок"
+    event:
+      description: "Описание"
+      submit: "Создать"
+    user:
+      edit:
+        avatar: "Аватар"
+        password: "Новый пароль"
+        password_confirmation: "Подтверждение нового пароля"
+        current_password: "Текущий пароль"
+        submit: "Сохранить изменения"
+        destroy: "Удалить аккаунт"
+  links:
+    user: "Пользователь"
+    new_post: "Новая запись"
+    destroy_user_session: "Выйти"
+    new_user_session: "Войти"
+    new_user_registration: "Зарегистрироваться"
+  titles:
+    post:
+      edit: "Редактирование записи"
+      new: "Новая запись"
+    registration:
+      edit: "Редактирование профиля"
+      new: "Регистрация"
+  views:
+    registration:
+      email_confirmation: "Подтверждение электронной почты"
+      min_symbols:
+        t1: "необходимо минимум %{count} символов"
+        t2: "должно быть не менее %{count} символов"
+  session:
+    email: "Электронная почта"
+    password: "Пароль"
+    remember_me: "Запомнить меня"
+    submit: "Войти"

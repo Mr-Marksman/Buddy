@@ -1,0 +1,36 @@
+<h2><%= I18n.t("titles.registration.new") %></h2>
+
+<%= form_for resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false} do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-group mt-3 col-md-6">
+    <%= f.label :name, I18n.t("form.user.new.name") %><br />
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3 col-md-6">
+    <%= f.label :email, I18n.t("form.user.new.email") %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3 col-md-6">
+    <%= f.label :password, I18n.t("form.user.new.password") %>
+    <% if @minimum_password_length %>
+      <em>
+        <%= I18n.t("views.registration.min_symbols.t1") %>
+        <%= @minimum_password_length %>
+        <%= I18n.t("views.registration.min_symbols.t2") %>
+      </em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3 col-md-6">
+    <%= f.label :password_confirmation, I18n.t("form.user.new.password_confirmation") %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit I18n.t("form.user.new.submit"), class: "btn btn-success mt-3" %>
+  </div>
+<% end %>
