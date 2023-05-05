@@ -18,12 +18,23 @@ ru:
       submit: "Создать"
     user:
       edit:
-        avatar: "Аватар"
         password: "Новый пароль"
         password_confirmation: "Подтверждение нового пароля"
         current_password: "Текущий пароль"
         submit: "Сохранить изменения"
         destroy: "Удалить аккаунт"
+      new:
+        name: "Имя"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        submit: "Зарегистрироваться"
+    session:
+      email: "Email"
+      password: "Пароль"
+      remember_me: "Запомни меня"
+      submit: "Войти"
+
   links:
     user: "Пользователь"
     new_post: "Новая запись"
@@ -37,12 +48,14 @@ ru:
     registration:
       edit: "Редактирование профиля"
       new: "Регистрация"
+    session:
+      new: "Войти"
   views:
     registration:
       email_confirmation: "Подтверждение электронной почты"
       min_symbols:
-        t1: "необходимо минимум %{count} символов"
-        t2: "должно быть не менее %{count} символов"
+        t1: "Необходимо минимум "
+        t2: " символов"
   session:
     email: "Электронная почта"
     password: "Пароль"

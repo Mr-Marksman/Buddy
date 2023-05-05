@@ -1,0 +1,26 @@
+<h2><%= I18n.t("titles.session.new") %></h2>
+
+<%= form_for resource, as: resource_name, url: session_path(resource_name), data: {turbo: false} do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-group mt-3 row col-md-6">
+    <%= f.label :email, I18n.t("form.session.email") %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-3 row col-md-6">
+    <%= f.label :password, I18n.t("form.session.password") %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, I18n.t("form.session.remember_me") %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit I18n.t("form.session.submit"), class: "btn btn-success mt-3" %>
+  </div>
+<% end %>
